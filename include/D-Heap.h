@@ -70,7 +70,7 @@ private:
 
 	void go_down(int i)
 	{
-		while ((i * D + 1 < size || i == 0) && v[i * D + 1] < v[i])
+		while ((i * D + 1 <= size || i == 0) && v[i * D + 1] < v[i])
 		{
 			swap(v[i], v[i * D + 1]);
 			i = i * D + 1;
@@ -106,9 +106,11 @@ public:
 
 	void erase(int index)
 	{
-		swap(v[index], v[size]);
+		v[index].key = v[1].key - 1;
+		go_up(index);
+		swap(v[1], v[size]);
 		size--;
-		go_down(index);
+		go_down(1);
 	}
 
 
